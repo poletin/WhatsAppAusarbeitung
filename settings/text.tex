@@ -1,0 +1,64 @@
+% Colors
+\definecolor{ListingBackground}{HTML}{FFFFFF}
+\definecolor{LinkColor}{HTML}{00007A}
+
+
+% Font
+\usepackage[onehalfspacing]{setspace}
+\usepackage{lmodern}
+\usepackage[official]{eurosym}
+\usepackage{enumitem}
+\usepackage[locale=DE]{siunitx} % SI Units für Währungen
+\DeclareSIUnit{\EUR}{\text{\euro}} % Beispielverwendung: \SI{10.10}{\EUR}
+
+\usepackage[autostyle=true,german=quotes]{csquotes}
+\usepackage{url}
+\newcommand{\code}[1]{\texttt{#1}}
+
+% Additional Setup
+\usepackage[unicode=true,hypertexnames=false,colorlinks=true,linkcolor=LinkColor,citecolor=LinkColor,urlcolor=LinkColor,pdftex]{hyperref}
+
+% Trennung von URLs im Literaturverzeichnis (große Werte [> 10000] verhindern die Trennung)
+\defcounter{biburlnumpenalty}{10} % Strafe für Trennung in URL nach Zahl
+\defcounter{biburlucpenalty}{500}  % Strafe für Trennung in URL nach Großbuchstaben
+\defcounter{biburllcpenalty}{500}  % Strafe für Trennung in URL nach Kleinbuchstaben
+\interfootnotelinepenalty=10000 % prevent all footnotes from breaking over a page.
+
+% Configs
+\setcounter{tocdepth}{1} % Limit table of contents to subsection
+\sisetup{detect-weight=true, detect-family=true} % SI Units shall detect font weight and family
+\setlist[description]{style=nextline} % Break definitions of terms to a new line (used by \begin{description} \item[foo] bar \end{description})
+\renewcommand*{\bibfont}{\small}
+
+% Quellcode
+\usepackage{listings}
+\usepackage{float}
+\lstset{
+    inputpath=assets/listings,
+    language=Java,			% Standardsprache des Quellcodes
+    numbers=left,			% Zeilennummern links
+    stepnumber=1,			% Jede Zeile nummerieren.
+    numbersep=5pt,			% 5pt Abstand zum Quellcode
+    numberstyle=\tiny,		% Zeichengrösse 'tiny' für die Nummern.
+    breaklines=true,		% Zeilen umbrechen wenn notwendig.
+    breakautoindent=true,	% Nach dem Zeilenumbruch Zeile einrücken.
+    postbreak=\space,		% Bei Leerzeichen umbrechen.
+    tabsize=2,				% Tabulatorgrösse 2
+    basicstyle=\ttfamily\footnotesize, % Nichtproportionale Schrift, klein für den Quellcode
+    showspaces=false,		% Leerzeichen nicht anzeigen.
+    showstringspaces=false,	% Leerzeichen auch in Strings ('') nicht anzeigen.
+    extendedchars=true,		% Alle Zeichen vom Latin1 Zeichensatz anzeigen.
+    captionpos=b,			% sets the caption-position to bottom
+    backgroundcolor=\color{ListingBackground}, % Hintergrundfarbe des Quellcodes setzen.
+    xleftmargin=0pt,		% Rand links
+    xrightmargin=0pt,		% Rand rechts
+    frame=single,			% Rahmen an
+    frameround=ffff,
+    rulecolor=\color{darkgray},	% Rahmenfarbe
+    fillcolor=\color{ListingBackground},
+    keywordstyle=\color[rgb]{0.133,0.133,0.6},
+    commentstyle=\color[rgb]{0.133,0.545,0.133},
+    stringstyle=\color[rgb]{0.627,0.126,0.941},
+    float
+}
+\lstloadlanguages{Python,Java}
