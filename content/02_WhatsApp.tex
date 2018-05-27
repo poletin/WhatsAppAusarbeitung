@@ -1,0 +1,47 @@
+\section{Sicherheitskonzept von WhatsApp}\label{sec:kaptiel}
+% \subsection{Einführung}
+Das Sicherheitskonzept, welches von WhatsApp bereitsgestellt wird, zeigt wie
+der Nachrichtenausstausch 'Ende-zu-Ende' verschlüsselt wird. Dabei wird neben
+den verschiedenen Verschlüsselungs-Verfahren auch der Austausch der Nachrichten
+dargestellt, die zur Registrierung bei WhatsApp, zur Anmeldung mit einem neuen
+Endgerät, sowie dem eigentlich Austausch von Nachrichten, Sprachnachrichten, Bildern
+und Videos notwendig sind. 
+Um diesen Nachrichtenaustausch später analysieren zu können, werden die Konzepte
+von WhatsApp kurz dargestellt.\cite{ENCOV}; 
+
+% \subsection{WhatsApp-Verschlüsselung}
+WhatsApp ist nicht auf Verschlüsselungs spezialisiert. Deswegen verwendet WhatsApp
+die Krypto-Suite 'Open Whisper Systems'. Diese Suite wird nicht nur von WhatsApp verwendet, 
+sondern auch von 'Signal'.
+'Open Whisper Systems'-Suite bietet eine Ende-zu-Ende-Verschlüsselung an. Das Ziel
+ist, dass weder Dritte noch WhatsApp selbst Zugriff auf die Klartext-Nachrichten haben.
+Dies soll auch bei Verlust oder Veröffentlichung des privaten Schlüssels der Fall sein, 
+das heißt mit einem bekannten Private Key können vergangene und zukünftige Nachrichten
+nicht entschlüsselt werden können. Um dies zu erreichen verwendet WhatsApp eine 
+Vielzahl von verschiedenen Schlüsseln die sich unterteilen in Public Keys und Session Keys. 
+
+\underline{Public Key Types: }
+    \begin{itemize}
+        \item Identity Key Pair: langzeit, Curve25519, erstellt bei Installation 
+        \item Signed Pre Key: Curve25519, erstellt bei Installation, signiert von Identity Key, rotiert zeitbasiert
+        \item One-Time Pre Key: mehrere Curve25519, erstellt bei Installation, ergänzt falls notwendig
+    \end{itemize}
+    
+\underline{Session Key Types:}
+    \begin{itemize}
+        \item Root Key: 32 bit, verwendet um Chain Key zu erstellen
+        \item Chain Key: 32 bit, verwendet um Message Key zu erstellen
+        \item Message Key: 80 bit, verwendet um die Nachricht zu verschlüsseln 
+    \end{itemize}
+
+Die Nachrichten werden mit dem 'Message Key' verschlüsselt, dieser besteht aus einem 32 bit AES-256 Key (im CBC-Mode), einer 32 bit HMAC-SHA256 Key Signatur und einem 16 bit Initialisierungsvektor. 
+Der Message Key ist flüchtig, das heißt er wird für jede Nachricht die übertragen wird, neu erstellt.
+Dies sorgt dafür, dass nach dem Senden bzw. Empfangen der Nachricht dieser nicht mehr 
+gültig ist. Gelangt ein Message Key an die Öffentlichkeit, kann so nur eine einzige Nachricht
+entschlüsselt werden und eben keine vergangenen oder zukünftigen.
+Die HMAC-SHA256 Signature die an den eigentlichen Schlüssel angehängt wird, dient
+zur Authentifizierung.\cite{ENCOV}
+
+
+
+ 
