@@ -1,4 +1,23 @@
-\section{Tools}\label{sec:kaptiel}
+\section{Verwendete Tools}\label{sec:kaptiel}
 \subsection{Wireshark}
+Wireshark ist ein mächtiges Tool zur Analyse der Netzwerkkommunikation.
+Es werden alle Pakete erfasst die im Netzwerk versendet werden und in einem 
+lesbaren Format dargestellt. 
+Standardmäßig wird Wireshark im 'promiscous mode' gestartet. Dieser ermöglicht
+es, nicht nur Datenverkehr des eigenen Netzwerkadapters zu sehen, sondern alle Pakete
+des Netzwerkes. 
+Soll eine bestimmte Anwendung analysiert werden, sind viele der empfangenen Pakete
+uninteressant. Wireshark stellt ein mächtiges Filtertool zur verfügung. 
+Beispielsweise können Pakete mit einem bestimmten Format, einer bestimmten IP-Adresse, 
+bestimmten Schlüsselbegriffen etc. angezeigt werden. Zur Unterstützung der Eingabe, werden
+zahlreiche Standardfilter angezeigt. 
+Es gibt zwei Möglichkeiten mithilfe von Wireshark Pakete zu filtern.
+\begin{itemize}
+    \item Capture Filter: hier werden die Pakete nur erfasst, wenn sie zu dem eingestellten Filter passen
+    \item Display Filter: hier werden alle Pakete erfasst, jedoch nur diese dargestellt, die zu einem Filter passen
+\end{itemize}
+\cite{WS1}
+
 \subsection{BurpSuite}
 \subsection{PortSniffer}
+\subsection{Chrome Debugger}
